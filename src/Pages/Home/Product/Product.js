@@ -1,18 +1,24 @@
 import React from 'react';
-import { Card, Col } from 'react-bootstrap';
+import { Button, Card, Col, NavLink } from 'react-bootstrap';
 
-const Product = () => {
+const Product = ({ product }) => {
+    const { name, image, price, author, _id } = product;
     return (
 
         <Col>
-            <Card className='h-100'>
-                <Card.Img variant="top" src="holder.js/100px160" />
+            <Card>
+                <Card.Img variant="top" src={image} style={{ height: '350px' }} />
                 <Card.Body>
-                    <Card.Title>Card title</Card.Title>
+                    <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                        This is a longer card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit longer.
+                        {author}
                     </Card.Text>
+                    <Card.Text>
+                        {price}
+                    </Card.Text>
+                    <NavLink to={`/detail/${_id}`}> <Button size="small" style={{ backgroundColor: 'rgb(30 58 138)' }}>Details</Button></NavLink>
+
+
                 </Card.Body>
             </Card>
         </Col>

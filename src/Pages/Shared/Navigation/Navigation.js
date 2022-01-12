@@ -1,7 +1,11 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import useFirebase from '../../../hook/useFirebase';
 
 const Navigation = () => {
+
+    const { logOut, user, signinWithGoogle } = useFirebase();
+    console.log(user);
     return (
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -14,14 +18,23 @@ const Navigation = () => {
                         <Nav.Link href="#pricing">PlaceOrder</Nav.Link>
                         <Nav.Link href="#admin">Admin</Nav.Link>
 
+
+
+                        {
+                            user?.email ? <Nav.Link onClick={logOut}>LogOut</Nav.Link>
+                                :
+                                <Nav.Link onClick={signinWithGoogle}>Login</Nav.Link>
+
+                        }
+
+
+
                     </Nav>
                     <Nav>
                         <Navbar.Text>
-                            <a href="#login">Mark Otto</a>
+                            <h6>{user?.displayName}</h6>
                         </Navbar.Text>
-                        <Nav.Link eventKey={2} href="#memes">
-                            LogOut
-                        </Nav.Link>
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
