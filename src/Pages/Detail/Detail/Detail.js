@@ -17,8 +17,8 @@ const Detail = () => {
 
     const handleSubmit = e => {
         const existForm = getForm();
-        // console.log('exist', existForm);
         // const form = { name, email };
+        console.log('exist', existForm);
         const newForm = { ...existForm.form, name, email };
         console.log(newForm);
         localStorage.setItem('form', JSON.stringify(newForm));
@@ -46,7 +46,7 @@ const Detail = () => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" defaultValue={savedForm.email} onChange={e => setEmail(e.target.value)} />
+                    <Form.Control type="email" placeholder="Enter email" defaultValue={savedForm.email} onBlur={e => setEmail(e.target.value)} />
 
                 </Form.Group>
 
