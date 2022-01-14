@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Col, Form, Image, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
@@ -7,7 +7,8 @@ const Detail = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    let savedName = '';
+    // const savedName = useRef('');
+    // let savedName = '';
 
     const handleSubmit = e => {
         const form = { name, email };
@@ -21,13 +22,16 @@ const Detail = () => {
         return form ? JSON.parse(form) : {};
     }
 
+    const savedForm = getForm();
 
-    useEffect(() => {
-        const savedForm = getForm();
-        savedName = savedForm.name;
-        console.log(savedName);
-        console.log(savedForm);
-    }, [])
+
+    // useEffect(() => {
+    //     const savedForm = getForm();
+    //     savedName = savedForm.name;
+    //     // console.log(savedName);
+    //     console.log(savedForm);
+    // }, [])
+    console.log('outside effect', savedForm);
 
     return (
         <div>
@@ -37,13 +41,13 @@ const Detail = () => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={savedName} onChange={e => setEmail(e.target.value)} />
+                    <Form.Control type="email" placeholder="Enter email" defaultValue={savedForm.email} onChange={e => setEmail(e.target.value)} />
 
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name" onChange={e => setName(e.target.value)} />
+                    <Form.Control type="text" placeholder="Enter name" defaultValue={savedForm.name} onChange={e => setName(e.target.value)} />
 
                 </Form.Group>
 
