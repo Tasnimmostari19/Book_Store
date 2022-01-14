@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Card, Col, NavLink } from 'react-bootstrap';
+import Detail from '../../Detail/Detail/Detail';
 
 const Product = ({ product }) => {
     const { name, image, price, author, _id } = product;

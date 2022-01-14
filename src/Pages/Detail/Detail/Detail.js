@@ -10,17 +10,22 @@ const Detail = () => {
     // const savedName = useRef('');
     // let savedName = '';
 
-    const handleSubmit = e => {
-        const form = { name, email };
-        console.log(form);
-        localStorage.setItem('form', JSON.stringify(form));
-        e.preventDefault();
-    }
-
     const getForm = () => {
         const form = localStorage.getItem('form');
         return form ? JSON.parse(form) : {};
     }
+
+    const handleSubmit = e => {
+        const existForm = getForm();
+        // console.log('exist', existForm);
+        // const form = { name, email };
+        const newForm = { ...existForm.form, name, email };
+        console.log(newForm);
+        localStorage.setItem('form', JSON.stringify(newForm));
+        e.preventDefault();
+    }
+
+
 
     const savedForm = getForm();
 
